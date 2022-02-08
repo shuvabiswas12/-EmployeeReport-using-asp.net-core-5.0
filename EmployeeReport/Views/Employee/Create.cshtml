@@ -1,0 +1,233 @@
+﻿
+@model EmployeeReport.Models.EmployeeViewModel.EmployeeVM;
+
+
+
+<main class="container">
+    <form enctype="multipart/form-data" method="post" asp-action="CreateEmployee">
+        <div class="row">
+            <div class="text-danger" asp-validation-summary="All"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label asp-for="Employee.Name"></label>
+                    <input asp-for="Employee.Name" type="text" class="form-control" autofocus />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Employee.Email"></label>
+                    <input asp-for="Employee.Email" type="email" class="form-control" />
+                </div>
+                <div class="row">
+                    <div class="form-group col">
+                        <label asp-for="Employee.Phone"></label>
+                        <input asp-for="Employee.Phone" type="number" class="form-control" />
+                    </div>
+                    <div class="form-group col">
+                        <label asp-for="Employee.Salary"></label>
+                        <input asp-for="Employee.Salary" type="number" class="form-control" />
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="form-group col">
+                        <p>Gender</p>
+
+                        @Html.RadioButtonFor(model => model.Gender, "Male")
+                        Male
+
+                        &nbsp;
+
+                        @Html.RadioButtonFor(model => model.Gender, "Female")
+                        Female
+
+                    </div>
+                    <div class="form-group col">
+                        <label asp-for="Employee.Country"></label> <br />
+                        <select asp-for="Employee.Country" asp-items="@Model.CountryDropDown" class="form-control form-select">
+                            <option selected>Select a country</option>
+                        </select>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="form-group col">
+                        <label asp-for="Employee.JoiningDate"></label>
+                        <input asp-for="Employee.JoiningDate" type="date" class="form-control" />
+                    </div>
+                    <div class="form-group col">
+                        <label asp-for="Employee.NID"></label>
+                        <input asp-for="Employee.NID" type="text" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group row">
+                    <img src="~/images/image.png" alt="Sample dummy images for profile picture." class="col rounded mx-auto d-block w-25" id="profile-image-preview" />
+                    <div class="col-6">
+                        <label asp-for="Employee.ProfilePicture"></label>
+                        <input onchange="loadFile(event)" asp-for="profileImage" type="file" class="form-control-file input-image" />
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="Employee.CompanyName"></label>
+                    <input asp-for="Employee.CompanyName" type="text" class="form-control" />
+                </div>
+                <hr />
+                <div class="form-floating">
+                    <label asp-for="Employee.MailingAddress"></label>
+                    <textarea asp-for="Employee.MailingAddress" class="form-control" placeholder="Leave your mailing address" id="mailingAddress"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <td>Education</td>
+                            <td>Institute</td>
+                            <td>Passing Year</td>
+                            <td>Board / Faculty</td>
+                            <td>Grade</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <select asp-items="@Model.EducationDropdown" class="form-control form-select">
+                                    <option selected></option>
+                                </select>
+                            </td>
+                            <td>
+                                <input asp-for="Employee.SchoolName" type="text" class="form-control" />
+                            </td>
+                            <td style="width: 150px;">
+
+                                <select asp-for="Employee.SscPassingYear" asp-items="@Model.PassingYearDropDown" class="form-control form-select">
+                                    <option selected></option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-select form-control" asp-for="Employee.SscBoard" asp-items="@Model.BoardDropDown">
+                                    <option></option>
+                                </select>
+                            </td>
+                            <td class="w-25">
+                                <div class="row input-group">
+                                    <div class="col-md-5 col-sm-10">
+                                        <input asp-for="Employee.SscGrade" type="number" class="form-control" />
+                                    </div>
+                                    &nbsp;
+                                    <p class="lead">&#47;</p>
+                                    &nbsp;
+                                    <div class="col-md-6 col-sm-12">
+                                        <select class="form-select form-control">
+                                            <option>Out of</option>
+                                            <option value="4.0">4.0</option>
+                                            <option value="5.0">5.0</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select asp-items="@Model.EducationDropdown" class="form-control form-select">
+                                    <option selected></option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" asp-for="Employee.CollegeName" class="form-control" />
+                            </td>
+                            <td style="width: 150px;">
+
+                                <select asp-for="Employee.HscPassingYear" asp-items="@Model.PassingYearDropDown" class="form-control form-select">
+                                    <option selected></option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-select form-control" asp-for="Employee.HscBoard" asp-items="@Model.BoardDropDown">
+                                    <option></option>
+
+                                </select>
+                            </td>
+                            <td class="w-25">
+                                <div class="row input-group">
+                                    <div class="col-md-5 col-sm-10">
+                                        <input asp-for="Employee.HscGrade" type="number" class="form-control" />
+                                    </div>
+                                    &nbsp;
+                                    <p class="lead">&#47;</p>
+                                    &nbsp;
+                                    <div class="col-md-6 col-sm-12">
+                                        <select class="form-select form-control">
+                                            <option>Out of</option>
+                                            <option value="4.0">4.0</option>
+                                            <option value="5.0">5.0</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select asp-items="@Model.EducationDropdown" class="form-control form-select">
+                                    <option selected></option>
+                                </select>
+                            </td>
+                            <td>
+                                <input asp-for="Employee.UniversityName" type="text" class="form-control" />
+                            </td>
+                            <td style="width: 150px;">
+
+                                <select asp-for="Employee.GraduationYear" asp-items="@Model.PassingYearDropDown" class="form-control form-select">
+                                    <option selected></option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-select form-control" asp-for="Employee.FacultyName" asp-items="@Model.FacultyDropDown">
+                                    <option></option>
+
+                                </select>
+                            </td>
+                            <td class="w-25">
+                                <div class="row input-group">
+                                    <div class="col-md-5 col-sm-10">
+                                        <input asp-for="Employee.BechelorGrade" type="number" class="form-control" />
+                                    </div>
+                                    &nbsp;
+                                    <p class="lead">&#47;</p>
+                                    &nbsp;
+                                    <div class="col-md-6 col-sm-12">
+                                        <select class="form-select form-control">
+                                            <option>Out of</option>
+                                            <option value="4.0">4.0</option>
+                                            <option value="5.0">5.0</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <input type="submit" name="name" value="Create Employee" class="btn btn-success" />
+    </form>
+</main>
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
