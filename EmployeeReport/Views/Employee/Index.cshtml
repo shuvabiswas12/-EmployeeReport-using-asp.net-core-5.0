@@ -34,9 +34,8 @@
                         <td width="20%" class="lead">@employee.Country</td>
                         <td width="20%">
                             <div class="d-flex justify-content-between btn-group">
-                                <a type="submit" asp-action="ViewEmployee" asp-controller="Employee" class="btn btn-outline-primary">View</a>
+                                <a asp-action="ViewEmployee" asp-controller="Employee" asp-route-Id="@employee.Id" class="btn btn-outline-primary">View</a>
                                 <button class="btn btn-dark">Print</button>
-                                <button class="btn btn-outline-danger">Delete</button>
                             </div>
                         </td>
                     </tr>

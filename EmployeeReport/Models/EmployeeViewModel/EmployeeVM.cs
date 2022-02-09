@@ -12,6 +12,7 @@ namespace EmployeeReport.Models.EmployeeViewModel
     {
         public Employee Employee { get; set; }
         
+        [Required]
         public string Gender { get; set; }
 
         [Required]

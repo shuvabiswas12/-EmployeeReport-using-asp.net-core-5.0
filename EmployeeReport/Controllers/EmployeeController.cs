@@ -26,10 +26,73 @@ namespace EmployeeReport.Controllers
             return View(employeeList);
         }
 
-        // httpGet
-        public IActionResult ViewEmployee()
+        // httpGet - for update view
+        public IActionResult UpdateView(int? id)
         {
             return View();
+        }
+
+
+        // actual update operation here
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateEmployee(Employee employee)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var employee = _db.Employees.Find(id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                string path = @"C:\Users\USER-PC\source\repos\EmployeeReport\EmployeeReport\wwwroot\" + @"images\" + employee.ProfilePicture;
+                if (System.IO.File.Exists(path))
+                {
+                    try
+                    {
+                        _db.Employees.Remove(employee);
+                        _db.SaveChanges();
+                        System.IO.File.Delete(path);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Problems on deleting file.");
+                        Console.WriteLine(e.Message);
+                    }
+
+                    return RedirectToAction("Index");
+                }
+
+                return View("Index");
+
+            }
+        }
+
+        // httpGet - view employee details in another page
+        public IActionResult ViewEmployee(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            var employee = _db.Employees.Find(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return View(employee);
         }
 
         // httpGet
@@ -63,9 +126,6 @@ namespace EmployeeReport.Controllers
                 new SelectListItem{Value = "SSC", Text = "SSC"},
                 new SelectListItem{Value = "HSC", Text = "HSC"},
                 new SelectListItem{Value = "BSC", Text = "BSC"},
-                new SelectListItem{Value = "BCom", Text = "BCom"},
-                new SelectListItem{Value = "BA", Text = "BA"},
-                new SelectListItem{Value = "Diploma", Text = "Diploma"},
             };
 
             IEnumerable<SelectListItem> BoardDropDown = new[]
