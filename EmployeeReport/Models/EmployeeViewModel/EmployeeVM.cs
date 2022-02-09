@@ -15,7 +15,6 @@ namespace EmployeeReport.Models.EmployeeViewModel
         [Required]
         public string Gender { get; set; }
 
-        [Required]
         public IFormFile profileImage { get; set; }
 
         public IEnumerable<SelectListItem> PassingYearDropDown { get; set; }

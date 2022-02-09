@@ -383,3 +383,4 @@ C:\Users\USER-PC\source\repos\EmployeeReport\EmployeeReport\bin\Debug\netcoreapp
 C:\Users\USER-PC\source\repos\EmployeeReport\EmployeeReport\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\USER-PC\source\repos\EmployeeReport\EmployeeReport\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Create.cshtml.g.cs
 C:\Users\USER-PC\source\repos\EmployeeReport\EmployeeReport\obj\Debug\netcoreapp3.1\Razor\Views\Employee\ViewEmployee.cshtml.g.cs
+C:\Users\USER-PC\source\repos\EmployeeReport\EmployeeReport\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Update.cshtml.g.cs
